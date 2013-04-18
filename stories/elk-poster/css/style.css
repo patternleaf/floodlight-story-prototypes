@@ -1,0 +1,8 @@
+.section {
+  position: relative;
+  width: 800px;
+}
+
+.section img {
+  max-width: 100%;
+}
