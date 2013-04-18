@@ -51,11 +51,8 @@
       <section id="intro">
         <h1>Story Presentations</h1>
         <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
-      </section>
-
-      <section id="viewer">
         <p><button class="btn btn-large btn-primary" id="launch-viewer">Launch Story in Viewer</button></p>
-      </viewer>
+      </section>
 
       <section id="form">
         <iframe src="https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
@@ -86,19 +83,42 @@
 
     <script>
     /**
+     * Navigate to the response form.
+     */
+    function showForm() {
+        window.location.hash = 'form';
+    }
+
+    /**
      * Launch the story viewer in fullscreen mode.
      */
     function showStory(id) {
       var sel = '#story-' + id;
+      $(sel).show();
       if (BigScreen.enabled) {
-          BigScreen.request($(sel)[0]);
+          BigScreen.request($(sel)[0], null, function() {
+              $(sel).hide();
+              showForm();
+          });
       }
       else {
         // Fallback
       }
     }
 
+    /**
+     * Resize the initial section so following sections are not visible
+     */
+    function hideFollowing() {
+      var bottomPos = $(document).height();
+      var $firstSection = $('section').first();
+      // Save the original height in case we want to restore it later
+      $firstSection.data('orig-height', $firstSection.height());
+      $('section').first().height(bottomPos);
+    }
+
     $(function() {
+      hideFollowing();
       $('#launch-viewer').click(function() {
         showStory('elk-poster');
       });
