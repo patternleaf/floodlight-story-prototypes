@@ -1,8 +1,75 @@
-.section {
-  position: relative;
-  width: 800px;
+body > nav {
+  display: block;
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  /* background-color: #fff; */
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.section img {
+.section {
+  position: relative;
+}
+
+/* TODO: Section hover effect so users know individual 
+ * sections are clickable
+ */
+.section:hover img {
+  box-shadow: 0 1px 8px rgba(0, 105, 214, 0.75);
+}
+
+.section:hover h1,
+.section:hover h2 {
+  color: #0088cc;
+}
+
+.section.present:hover img {
+  box-shadow: none !important;
+}
+
+.section.present:hover h1,
+.section.present:hover h2 {
+  color: rgb(51, 51, 51);
+}
+
+.section figure {
+  display: block;
+  position: relative;
+  margin: 0;
+}
+
+
+.section.landscape {
+  width: 800px;
+  height: 600px;
+}
+
+.section.portrait {
+  height: 600px;
+  width: 450px;
+}
+
+.section.landscape img {
   max-width: 100%;
 }
+
+.section.portrait img {
+  max-height: 100%;
+}
+
+/* Hide meta-section and caption text when zoomed out */
+.section .summary,
+.section figcaption,
+#section-call-to-action p {
+  display: none;
+}
+
+/* When a section becomes present/zoomed-in, show text */
+.section.present .summary,
+.section.present figcaption,
+#section-call-to-action.present p {
+  display: block;
+}
+
