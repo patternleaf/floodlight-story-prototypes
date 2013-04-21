@@ -14,6 +14,12 @@
     }).get();
   }
 
+  // Mark a particul
+  function setSeen(id) {
+    seen[id] = true;
+    // TODO: Serialize seen into a cookie
+  }
+
   function updateFormUrl(userId, storyType) {
     var url = googleFormUrl + '&entry.1498993524=' + userId +
               '&entry.75722686=' + storyType;
@@ -35,8 +41,7 @@
     var userId = $('input[name=userid]').val(); 
     var storyType = $(sel).data('survey-value');
     updateFormUrl(userId, storyType);
-    seen[id] = true;
-    // TODO: Serialize seen into a cookie
+    setSeen(id);
     $(sel).show();
     if (BigScreen.enabled) {
         BigScreen.request($(sel)[0], null, function() {
