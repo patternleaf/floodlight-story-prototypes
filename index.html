@@ -62,7 +62,8 @@
 
     </div> <!-- /container -->
 
-    <iframe id="story-elk-poster" style="" src="./stories/elk-poster/index.html" data-survey-value="Poster"></iframe>
+    <iframe id="story-elk-poster" style="" src="./stories/elk-poster/index.html" class="story-embed" data-survey-value="Poster"></iframe>
+    <iframe id="story-elk-linear" style="" src="./stories/elk-linear/index.html" class="story-embed"  data-survey-value="Linear"></iframe>
 
     <!-- Le javascript
     ================================================== -->
@@ -71,64 +72,6 @@
     <script src="./js/jquery-migrate-1.1.1.min.js"></script>
     <script src="./js/bigscreen.min.js"></script>
     <script src="./js/bootstrap.js"></script>
-
-    <script>
-    ;(function($) {
-      var googleFormUrl = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
-
-      function updateFormUrl(userId, storyType) {
-        var url = googleFormUrl + '&entry.1498993524=' + userId +
-                  '&entry.75722686=' + storyType;
-        $('#survey-google-form').attr('src', url);
-      }
-
-      /**
-       * Navigate to the response form.
-       */
-      function showForm() {
-          window.location.hash = 'form';
-      }
-
-      /**
-       * Launch the story viewer in fullscreen mode.
-       */
-      function showStory(id) {
-        var sel = '#story-' + id;
-        var userId = $('input[name=userid]').val(); 
-        var storyType = $(sel).data('survey-value');
-        updateFormUrl(userId, storyType);
-        $(sel).show();
-        if (BigScreen.enabled) {
-            BigScreen.request($(sel)[0], null, function() {
-                $(sel).hide();
-                showForm();
-            });
-        }
-        else {
-          // TODO: Present story in full-window modal
-          // Fallback
-        }
-      }
-
-      /**
-       * Resize the initial section so following sections are not visible
-       */
-      function hideFollowing() {
-        var bottomPos = $(document).height();
-        var $firstSection = $('section').first();
-        // Save the original height in case we want to restore it later
-        $firstSection.data('orig-height', $firstSection.height());
-        $('section').first().height(bottomPos);
-      }
-
-
-      $(function() {
-        hideFollowing();
-        $('#launch-viewer').click(function() {
-          showStory('elk-poster');
-        });
-      });
-    })(jQuery);
-    </script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
