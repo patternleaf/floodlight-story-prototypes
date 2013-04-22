@@ -1,0 +1,10 @@
+.byline {
+	float:left;
+}
+#slideshow {
+	width:100%;
+}
+
+#slideshow section img {
+	max-height:700px;
+}
