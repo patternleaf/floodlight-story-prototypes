@@ -1,12 +1,5 @@
-body > nav {
-  display: block;
-  position: fixed;
-  bottom: 10%;
-  right: 10%;
-  /* background-color: #fff; */
-  background-color: #eee;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.byline {
+  float: left;
 }
 
 .section {
@@ -62,14 +55,13 @@ body > nav {
 /* Hide meta-section and caption text when zoomed out */
 .section .summary,
 .section figcaption,
-#section-call-to-action p {
+#call-to-action p {
   display: none;
 }
 
 /* When a section becomes present/zoomed-in, show text */
 .section.present .summary,
 .section.present figcaption,
-#section-call-to-action.present p {
+#call-to-action.present p {
   display: block;
 }
-
