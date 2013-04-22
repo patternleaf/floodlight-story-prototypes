@@ -1,7 +1,15 @@
 ;(function($) {
   var googleFormUrl = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
   // Story formats that the user has seen
-  var seen = {};
+  var seen = $.cookie('floodlight_storytest_seen');
+  if (seen) {
+    seen = JSON.parse(seen);
+  }
+  else {
+    seen = {};
+  }
+  // UserId, usually the e-mail address
+  var userId;
 
   // Get unseen story ids
   function getStoryIds(sel, seen) {
@@ -14,10 +22,13 @@
     }).get();
   }
 
-  // Mark a particul
+  // Mark a particular story as seen
   function setSeen(id) {
     seen[id] = true;
-    // TODO: Serialize seen into a cookie
+    $.cookie('floodlight_storytest_seen', JSON.stringify(seen), {
+      expires: 30,
+      path: '/'
+    });
   }
 
   function updateFormUrl(userId, storyType) {
@@ -33,12 +44,41 @@
       window.location.hash = 'form';
   }
 
+  function getUserId() {
+    var inputVal;
+    if (typeof userId == 'undefined') {
+      // First try getting it from the cookie
+      userId = $.cookie('floodlight_storytest_userid');
+    }
+
+    if (typeof userId == 'undefined') {
+      // Then try getting it from the form
+      inputVal = $('input[name=userid]').val(); 
+      if (inputVal.length) {
+        userId = inputVal;
+        $.cookie('floodlight_storytest_userid', userId, {
+          expires: 30,
+          path: '/'
+        });
+      }
+    }
+
+    return userId;
+  }
+
+  function displayUserId() {
+    var userId = getUserId();
+    if (userId) {
+      $('input[name=userid]').val(userId);
+    }
+  }
+
   /**
    * Launch the story viewer in fullscreen mode.
    */
   function showStory(id) {
     var sel = '#story-' + id;
-    var userId = $('input[name=userid]').val(); 
+    var userId = getUserId();
     var storyType = $(sel).data('survey-value');
     updateFormUrl(userId, storyType);
     setSeen(id);
@@ -72,6 +112,7 @@
   }
 
   $(function() {
+    displayUserId();
     hideFollowing();
     $('#launch-viewer').click(function() {
       var storyIds = getStoryIds('iframe.story-embed', seen);
