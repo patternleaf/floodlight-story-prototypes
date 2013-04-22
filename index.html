@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="#">Floodlight</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
             </ul>
@@ -50,17 +50,20 @@
     <div class="container">
       <section id="intro">
         <h1>Story Presentations</h1>
-        <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+        <p>TODO: Put real intro text here</p>
+        <label>Your e-mail address</label>
+        <input type="text" name="userid" />
         <p><button class="btn btn-large btn-primary" id="launch-viewer">Launch Story in Viewer</button></p>
       </section>
 
       <section id="form">
-        <iframe src="https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        <iframe id="survey-google-form" src="https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
       </section>
 
     </div> <!-- /container -->
 
-    <iframe id="story-elk-poster" style="" src="./stories/elk-poster/index.html"></iframe>
+    <iframe id="story-elk-poster" style="" src="./stories/elk-poster/index.html" class="story-embed" data-survey-value="Poster"></iframe>
+    <iframe id="story-elk-linear" style="" src="./stories/elk-linear/index.html" class="story-embed"  data-survey-value="Linear"></iframe>
 
     <!-- Le javascript
     ================================================== -->
@@ -68,61 +71,7 @@
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/jquery-migrate-1.1.1.min.js"></script>
     <script src="./js/bigscreen.min.js"></script>
-    <script src="./js/bootstrap-transition.js"></script>
-    <script src="./js/bootstrap-alert.js"></script>
-    <script src="./js/bootstrap-modal.js"></script>
-    <script src="./js/bootstrap-dropdown.js"></script>
-    <script src="./js/bootstrap-scrollspy.js"></script>
-    <script src="./js/bootstrap-tab.js"></script>
-    <script src="./js/bootstrap-tooltip.js"></script>
-    <script src="./js/bootstrap-popover.js"></script>
-    <script src="./js/bootstrap-button.js"></script>
-    <script src="./js/bootstrap-collapse.js"></script>
-    <script src="./js/bootstrap-carousel.js"></script>
-    <script src="./js/bootstrap-typeahead.js"></script>
-
-    <script>
-    /**
-     * Navigate to the response form.
-     */
-    function showForm() {
-        window.location.hash = 'form';
-    }
-
-    /**
-     * Launch the story viewer in fullscreen mode.
-     */
-    function showStory(id) {
-      var sel = '#story-' + id;
-      $(sel).show();
-      if (BigScreen.enabled) {
-          BigScreen.request($(sel)[0], null, function() {
-              $(sel).hide();
-              showForm();
-          });
-      }
-      else {
-        // Fallback
-      }
-    }
-
-    /**
-     * Resize the initial section so following sections are not visible
-     */
-    function hideFollowing() {
-      var bottomPos = $(document).height();
-      var $firstSection = $('section').first();
-      // Save the original height in case we want to restore it later
-      $firstSection.data('orig-height', $firstSection.height());
-      $('section').first().height(bottomPos);
-    }
-
-    $(function() {
-      hideFollowing();
-      $('#launch-viewer').click(function() {
-        showStory('elk-poster');
-      });
-    });
-    </script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
