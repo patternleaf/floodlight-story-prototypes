@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Story Presentations</title>
+    <title>Floodlight Story Layouts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Floodlight</a>
+          <a class="brand" href="#">Floodlight Story Layouts</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
             </ul>
@@ -48,12 +48,30 @@
     </div>
 
     <div class="container">
-      <section id="intro">
-        <h1>Story Presentations</h1>
-        <p>TODO: Put real intro text here</p>
-        <label>Your e-mail address</label>
-        <input type="text" name="userid" />
-        <p><button class="btn btn-large btn-primary" id="launch-viewer">Launch Story in Viewer</button></p>
+      <section id="intro" class="row">
+        <div class="span12">
+            <h1>Floodlight Story Layouts</h1>
+            <p>Welcome! As part of the ongoing development of <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a>, we are collecting data on how readers respond to different story layouts.</p>
+            <p>You can help us build a better <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a> by participating in this 10-minute exercise.</p>
+
+            <p>The exercise consists of:</p>
+            <ol>
+                <li>Reading a brief story</li>
+                <li>Answering a few questions about the story</li>
+            </ol>
+
+            <p>Please feel free to forward this link to anyone who might be able to participate.</p>
+
+            <p>Thank you for your help,<br />
+               The Floodlight Team</p>
+
+            <label>Please enter your e-mail address (optional)</label>
+            <input type="text" name="userid" />
+            <p class="help-block">Because we are testing multiple ways of presenting digital stories, you’ll have a different experience each time you repeat the exercise. We encourage you to do this, and your email address helps us track whether you’ve been here before or if it’s your first time.</p>
+
+            <p class="help-block">We promise we won’t spam you and won’t share or sell your email address.</p>
+            <p><button class="btn btn-large btn-primary" id="launch-viewer">Launch Story in Viewer</button></p>
+        </div>
       </section>
 
       <section id="form">
@@ -62,8 +80,8 @@
 
     </div> <!-- /container -->
 
-    <iframe id="story-elk-poster" style="" src="./stories/elk-poster/index.html" class="story-embed" data-survey-value="Poster"></iframe>
-    <iframe id="story-elk-linear" style="" src="./stories/elk-linear/index.html" class="story-embed"  data-survey-value="Linear"></iframe>
+    <iframe id="story-elk-poster" style="display: none;" src="./stories/elk-poster/index.html" class="story-embed" data-survey-value="Poster"></iframe>
+    <iframe id="story-elk-linear" style="display: none;" src="./stories/elk-linear/index.html" class="story-embed"  data-survey-value="Linear"></iframe>
 
     <!-- Le javascript
     ================================================== -->
