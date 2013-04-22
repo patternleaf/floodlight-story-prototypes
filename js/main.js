@@ -44,8 +44,11 @@
       window.location.hash = 'form';
   }
 
-  function getUserId() {
+  function getUserId(opts) {
+    opts = opts || {};
     var inputVal;
+    var saveToCookie = false;
+
     if (typeof userId == 'undefined') {
       // First try getting it from the cookie
       userId = $.cookie('floodlight_storytest_userid');
@@ -56,11 +59,21 @@
       inputVal = $('input[name=userid]').val(); 
       if (inputVal.length) {
         userId = inputVal;
-        $.cookie('floodlight_storytest_userid', userId, {
-          expires: 30,
-          path: '/'
-        });
+        saveToCookie = true;
       }
+    }
+
+    if (typeof userId == 'undefined' && opts.setRandom) {
+      // Generate a random userId
+      userId = uuid.v4();
+      saveToCookie = true;
+    }
+
+    if (saveToCookie) {
+      $.cookie('floodlight_storytest_userid', userId, {
+        expires: 30,
+        path: '/'
+      });
     }
 
     return userId;
@@ -71,6 +84,7 @@
     if (userId) {
       $('input[name=userid]').val(userId);
     }
+    // TODO: Hide e-mail address form in the case of UUID-based userId
   }
 
   /**
@@ -78,7 +92,9 @@
    */
   function showStory(id) {
     var sel = '#story-' + id;
-    var userId = getUserId();
+    var userId = getUserId({
+      setRandom: true
+    });
     var storyType = $(sel).data('survey-value');
     updateFormUrl(userId, storyType);
     setSeen(id);
