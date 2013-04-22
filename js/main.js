@@ -81,10 +81,11 @@
 
   function displayUserId() {
     var userId = getUserId();
+    // If the userId is present, hide the form elements
     if (userId) {
+      $('#userid-container').hide();
       $('input[name=userid]').val(userId);
     }
-    // TODO: Hide e-mail address form in the case of UUID-based userId
   }
 
   /**
@@ -140,6 +141,9 @@
         // TODO: Handle this with user-facing message
         console.info("No more stories to see");
       }
+      // BOOKMARK
+      // TODO: Put form in a hidden iframe and copy it's contents into the main
+      // DOM
     });
   });
 })(jQuery);
