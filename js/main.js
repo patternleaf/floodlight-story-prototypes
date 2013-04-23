@@ -1,5 +1,6 @@
 ;(function($) {
-  var googleFormUrl = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
+  var googleFormUrlBase = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
+  var googleFormUrl = googleFormUrlBase;
   // Story formats that the user has seen
   var seen = $.cookie('floodlight_storytest_seen');
   if (seen) {
@@ -31,17 +32,16 @@
     });
   }
 
-  function updateFormUrl(userId, storyType) {
-    var url = googleFormUrl + '&entry.1498993524=' + userId +
+  function updateSurveyUrl(userId, storyType) {
+    googleFormUrl = googleFormUrlBase + '&entry.1498993524=' + userId +
               '&entry.75722686=' + storyType;
-    $('#survey-google-form').attr('src', url);
   }
 
   /**
    * Navigate to the response form.
    */
-  function showForm() {
-      window.location.hash = 'form';
+  function showSurvey() {
+      window.location = googleFormUrl;  
   }
 
   function getUserId(opts) {
@@ -97,13 +97,13 @@
       setRandom: true
     });
     var storyType = $(sel).data('survey-value');
-    updateFormUrl(userId, storyType);
+    updateSurveyUrl(userId, storyType);
     setSeen(id);
     $(sel).show();
     if (BigScreen.enabled) {
         BigScreen.request($(sel)[0], null, function() {
             $(sel).hide();
-            showForm();
+            showSurvey();
         });
     }
     else {
@@ -112,25 +112,37 @@
     }
   }
 
-  /**
-   * Resize the initial section so following sections are not visible
-   */
-  function hideFollowing() {
-    var bottomPos = $(document).height();
-    var $firstSection = $('section').first();
-    // Save the original height in case we want to restore it later
-    $firstSection.data('orig-height', $firstSection.height());
-    $('section').first().height(bottomPos);
-  }
-
   function getRandomStoryId(storyIds) {
     var idx = Math.floor(Math.random() * storyIds.length);
     return storyIds[idx];
   }
 
+  function updateIntro() {
+    var storyIds = getStoryIds('iframe.story-embed', seen);
+    // No remaining stories, 
+    if (!storyIds.length) {
+      $('#intro-default').hide();
+      $('#intro-returning').hide();
+      $('#intro-finished').show();
+      $('#view-story-form').hide();
+    }
+    else if (_.size(seen)) {
+      $('#intro-default').hide();
+      $('#intro-returning').show();
+      $('#intro-finished').hide();
+      $('#view-story-form').show();
+    }
+    else {
+      $('#intro-default').show();
+      $('#intro-returning').hide();
+      $('#intro-finished').hide();
+      $('#view-story-form').show();
+    }
+  }
+
   $(function() {
+    updateIntro();
     displayUserId();
-    hideFollowing();
     $('#launch-viewer').click(function() {
       var storyIds = getStoryIds('iframe.story-embed', seen);
       if (storyIds.length) {
@@ -141,9 +153,6 @@
         // TODO: Handle this with user-facing message
         console.info("No more stories to see");
       }
-      // BOOKMARK
-      // TODO: Put form in a hidden iframe and copy it's contents into the main
-      // DOM
     });
   });
 })(jQuery);

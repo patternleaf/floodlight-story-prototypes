@@ -48,38 +48,45 @@
     </div>
 
     <div class="container">
-      <section id="intro" class="row">
-        <div class="span12">
-            <h1>Floodlight Story Layouts</h1>
-            <p>Welcome! As part of the ongoing development of <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a>, we are collecting data on how readers respond to different story layouts.</p>
-            <p>You can help us build a better <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a> by participating in this 10-minute exercise.</p>
+        <section id="intro-container" class="row">
+            <div id="intro-default" class="span12" style="display: none;">
+                <h1>Floodlight Story Layouts</h1>
+                <p>Welcome! As part of the ongoing development of <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a>, we are collecting data on how readers respond to different story layouts.</p>
+                <p>You can help us build a better <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a> by participating in this 10-minute exercise.</p>
 
-            <p>The exercise consists of:</p>
-            <ol>
-                <li>Reading a brief story</li>
-                <li>Answering a few questions about the story</li>
-            </ol>
+                <p>The exercise consists of:</p>
+                <ol>
+                    <li>Reading a brief story</li>
+                    <li>Answering a few questions about the story</li>
+                </ol>
 
-            <p>Please feel free to forward this link to anyone who might be able to participate.</p>
+                <p>Please feel free to forward this link to anyone who might be able to participate.</p>
 
-            <p>Thank you for your help,<br />
-               The Floodlight Team</p>
+                <p>Thank you for your help,<br />
+                The Floodlight Team</p>
 
-            <fieldset id="userid-container">
-                <label>Please enter your e-mail address (optional)</label>
-                <input type="text" name="userid" />
-                <p class="help-block">Because we are testing multiple ways of presenting digital stories, you’ll have a different experience each time you repeat the exercise. We encourage you to do this, and your email address helps us track whether you’ve been here before or if it’s your first time.</p>
+            </div>
+            <div id="intro-returning" class="span12" style="display:none;">
+                <p>Thanks for completing the exercise! Your input is helping us make <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a> better.</p>
 
-                <p class="help-block">We promise we won’t spam you and won’t share or sell your email address.</p>
-        </fieldset>
-            <p><button class="btn btn-large btn-primary" id="launch-viewer">Launch Story in Viewer</button></p>
-        </div>
-      </section>
+                <p>You can repeat it up to a total of five times to view different story layouts.</p>
+            </div>
+            <div id="intro-finished" class="span12" style="display:none;">
+                <p>You’ve completed the exercise for all of our story layouts. Thanks for your help!</p>
 
-      <section id="form">
-        <iframe id="survey-google-form" src="https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-      </section>
+                <p>We look forward to seeing you on <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a>.</p>
+            </div>
+            <form class="span12" id="view-story-form" onsubmit="return false;" style="display: none;">
+                <fieldset id="userid-container">
+                    <label>Please enter your e-mail address (optional)</label>
+                    <input type="text" name="userid" />
+                    <p class="help-block">Because we are testing multiple ways of presenting digital stories, you’ll have a different experience each time you repeat the exercise. We encourage you to do this, and your email address helps us track whether you’ve been here before or if it’s your first time.</p>
 
+                    <p class="help-block">We promise we won’t spam you and won’t share or sell your email address.</p>
+                </fieldset>
+                <p><button class="btn btn-large btn-primary" id="launch-viewer">Launch Story in Viewer</button></p>
+            </form>
+        </section>
     </div> <!-- /container -->
 
     <iframe id="story-elk-poster" style="display: none;" src="./stories/elk-poster/index.html" class="story-embed" data-survey-value="Poster"></iframe>
@@ -92,6 +99,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/jquery-migrate-1.1.1.min.js"></script>
+    <script src="./js/underscore-min.js"></script>
     <script src="./js/jquery.cookie.js"></script>
     <script src="./js/bigscreen.min.js"></script>
     <script src="./js/bootstrap.js"></script>
