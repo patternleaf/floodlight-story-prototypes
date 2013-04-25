@@ -204,9 +204,8 @@
     };
     animate();
   };
-  
-  $(document).ready(function() {
-    
+
+  app.initApp = function() {
     d3.json('js/data.js', function(error, data) {
       if (data) {
         app.stories = data;
@@ -230,6 +229,18 @@
         });
       }
     });
-  });
+  }
+
+  if (window.location.search == '?mode=iframe') {
+    $(window).on('message', function(jqEvent) {
+      var message = jqEvent.originalEvent;
+      if (message.origin == 'http://' + window.location.host && message.data == 'storyLaunched') {
+        app.initApp();
+      }
+    });
+  }
+  else {
+    $(document).on('ready', app.initApp);
+  }
   
 })(jQuery, d3);

@@ -140,15 +140,30 @@
     <script src="js/reveal.min.js"></script>
     
     <script type="text/javascript">
-      $('#slideshow').height(($(window).innerHeight() - $('.navbar').height()) * .75);
-      Reveal.initialize({
-        margin: 0.2,
-        transition: 'linear'
-      });
-      $('#nextprev a.next').on('click', Reveal.next);
-      $('#nextprev a.prev').on('click', Reveal.prev);
-      $('#nextprev a.overview').on('click', Reveal.toggleOverview);
-      
+      (function() {
+        var initSlideshow = function() {
+          $('#slideshow').height(($(window).innerHeight() - $('.navbar').height()) * .75);
+          Reveal.initialize({
+            margin: 0.2,
+            transition: 'linear'
+          });
+          $('#nextprev a.next').on('click', Reveal.next);
+          $('#nextprev a.prev').on('click', Reveal.prev);
+          $('#nextprev a.overview').on('click', Reveal.toggleOverview);
+        };
+
+        if (window.location.search == '?mode=iframe') {
+          $(window).on('message', function(jqEvent) {
+            var message = jqEvent.originalEvent;
+            if (message.origin == 'http://' + window.location.host && message.data == 'storyLaunched') {
+              initSlideshow();
+            }
+          });
+        }
+        else {
+          $(document).on('ready', initSlideshow);
+        }
+      })();
     </script>
   </body>
 </html>
