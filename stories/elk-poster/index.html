@@ -10,6 +10,19 @@
         </style>
         <link rel="stylesheet" href="../css/story.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <script src="./js/modernizr.custom.js"></script>
+        <script>
+        Modernizr.load([
+          {
+            test: Modernizr.classlist,
+            nope: './js/classList.js',
+          },
+          {
+            test: Modernizr.dataset,
+            nope: './js/html5-dataset.js'
+          }
+        ]);
+    </script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">

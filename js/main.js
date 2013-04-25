@@ -1,4 +1,4 @@
-;(function($) {
+;(function($, Modernizr) {
   var googleFormUrlBase = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
   var googleFormUrl = googleFormUrlBase;
   // Story formats that the user has seen
@@ -141,6 +141,9 @@
   }
 
   $(function() {
+    if (!Modernizr.csstransforms3d || !Modernizr.fullscreen) {
+     $('#unsupported-browser-alert').show(); 
+    }
     updateIntro();
     displayUserId();
     $('#launch-viewer').click(function() {
@@ -155,4 +158,4 @@
       }
     });
   });
-})(jQuery);
+})(jQuery, Modernizr);
