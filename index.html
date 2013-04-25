@@ -16,6 +16,14 @@
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
     <script src="./js/modernizr.custom.js"></script>
+    <script>
+    Modernizr.load([
+      {
+        test: Modernizr.fullscreen,
+        nope: './js/jquery.simplemodal.1.4.4.min.js'
+      }
+    ]);
+    </script>
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
