@@ -94,9 +94,17 @@
     <iframe id="story-elk-node-graph" style="display: none;" src="./stories/elk-node-graph/index.html" class="story-embed"  data-survey-value="Node Graph"></iframe>
     <iframe id="story-elk-slideshow" style="display: none;" src="./stories/elk-slideshow/index.html" class="story-embed"  data-survey-value="Slideshow"></iframe>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33987542-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/jquery-migrate-1.1.1.min.js"></script>
     <script src="./js/underscore-min.js"></script>
