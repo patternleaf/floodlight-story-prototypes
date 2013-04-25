@@ -1,4 +1,4 @@
-;(function($, Modernizr) {
+;(function($, Modernizr, _gaq) {
   var googleFormUrlBase = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
   var googleFormUrl = googleFormUrlBase;
   // Story formats that the user has seen
@@ -146,7 +146,10 @@
 
   $(function() {
     if (!Modernizr.csstransforms3d || !Modernizr.fullscreen) {
-     $('#unsupported-browser-alert').show(); 
+      // Unsupported browser.  Show an error message and track an event
+      // with Google Analytics
+      $('#unsupported-browser-alert').show(); 
+      _gaq.push(['_trackEvent', 'Unsupported Browser', 'Unsupported Browser']);
     }
     updateIntro();
     displayUserId();
@@ -162,4 +165,4 @@
       }
     });
   });
-})(jQuery, Modernizr);
+})(jQuery, Modernizr, _gaq);
