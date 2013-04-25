@@ -101,7 +101,11 @@
     setSeen(id);
     $(sel).show();
     if (BigScreen.enabled) {
-        BigScreen.request($(sel)[0], null, function() {
+        BigScreen.request($(sel)[0], function() {
+          if ($(sel).data('story-src')) {
+            $(sel).attr('src', $(sel).data('story-src'));
+          }
+        }, function() {
             $(sel).hide();
             showSurvey();
         });
