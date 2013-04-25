@@ -158,11 +158,6 @@
       if (storyIds.length) {
         showStory(getRandomStoryId(storyIds));
       }
-      else {
-        // No more stories
-        // TODO: Handle this with user-facing message
-        console.info("No more stories to see");
-      }
     });
   });
 })(jQuery, Modernizr, _gaq);
