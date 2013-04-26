@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
     <link href="./css/bootstrap.css" rel="stylesheet">
     <style>
       body {
@@ -16,10 +15,15 @@
     </style>
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="./js/html5shiv.js"></script>
-    <![endif]-->
+    <script src="./js/modernizr.custom.js"></script>
+    <script>
+    Modernizr.load([
+      {
+        test: Modernizr.fullscreen,
+        nope: './js/jquery.simplemodal.1.4.4.min.js'
+      }
+    ]);
+    </script>
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
@@ -49,6 +53,12 @@
 
     <div class="container">
         <section id="intro-container" class="row">
+            <div id="unsupported-browser-alert" class="alert span8" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4>Unsupported Browser</h4>
+                <p></p>
+                <p>For these tests, we're experimenting with a number of modern web technologies. It looks like your browser doesn't support a required feature.  If you'd like to try out the stories, please upgrade your browser to the <a href="http://browsehappy.com/">latest version</a>.
+            </div>
             <div id="intro-default" class="span12" style="display: none;">
                 <h1>Floodlight Story Layouts</h1>
                 <p>Welcome! As part of the ongoing development of <a href="http://floodlightproject.org/" title="Floodlight">Floodlight</a>, we are collecting data on how readers respond to different story layouts.</p>
@@ -94,9 +104,17 @@
     <iframe id="story-elk-node-graph" style="display: none;" src="" class="story-embed"  data-survey-value="Node Graph" data-story-src="./stories/elk-node-graph/index.html"></iframe>
     <iframe id="story-elk-slideshow" style="display: none;" src="" class="story-embed"  data-survey-value="Slideshow" data-story-src="./stories/elk-slideshow/index.html"></iframe>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33987542-4']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/jquery-migrate-1.1.1.min.js"></script>
     <script src="./js/underscore-min.js"></script>

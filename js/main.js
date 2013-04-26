@@ -1,4 +1,4 @@
-;(function($) {
+;(function($, Modernizr, _gaq) {
   var googleFormUrlBase = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
   var googleFormUrl = googleFormUrlBase;
   // Story formats that the user has seen
@@ -97,22 +97,32 @@
       setRandom: true
     });
     var storyType = $(sel).data('survey-value');
+    var loadIframe = function() {
+      if ($(sel).data('story-src')) {
+        $(sel).attr('src', $(sel).data('story-src'));
+      }
+    };
+    var closeIframe = function() {
+      $(sel).hide();
+      showSurvey();
+    };
     updateSurveyUrl(userId, storyType);
     setSeen(id);
     $(sel).show();
     if (BigScreen.enabled) {
-        BigScreen.request($(sel)[0], function() {
-          if ($(sel).data('story-src')) {
-            $(sel).attr('src', $(sel).data('story-src'));
-          }
-        }, function() {
-            $(sel).hide();
-            showSurvey();
-        });
+        BigScreen.request($(sel)[0], loadIframe, closeIframe);
     }
     else {
-      // TODO: Present story in full-window modal
-      // Fallback
+      $(sel).modal({
+        minHeight: window.innerHeight,
+        minWidth: window.innerWidth,
+        onShow: function(dialog) {
+          $(sel).width(window.innerWidth);
+          $(sel).height(window.innerHeight);
+          loadIframe();
+        },
+        onClose: closeIframe
+      });
     }
   }
 
@@ -145,6 +155,12 @@
   }
 
   $(function() {
+    if (!Modernizr.csstransforms3d) {
+      // Unsupported browser.  Show an error message and track an event
+      // with Google Analytics
+      $('#unsupported-browser-alert').show(); 
+      _gaq.push(['_trackEvent', 'Unsupported Browser', 'Unsupported Browser']);
+    }
     updateIntro();
     displayUserId();
     $('#launch-viewer').click(function() {
@@ -152,11 +168,6 @@
       if (storyIds.length) {
         showStory(getRandomStoryId(storyIds));
       }
-      else {
-        // No more stories
-        // TODO: Handle this with user-facing message
-        console.info("No more stories to see");
-      }
     });
   });
-})(jQuery);
+})(jQuery, Modernizr, _gaq);

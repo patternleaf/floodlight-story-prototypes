@@ -10,6 +10,19 @@
         </style>
         <link rel="stylesheet" href="../css/story.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <script src="../../js/modernizr.custom.js"></script>
+        <script>
+        Modernizr.load([
+          {
+            test: Modernizr.classlist,
+            nope: '../../js/classList.js',
+          },
+          {
+            test: Modernizr.dataset,
+            nope: '../../js/html5-dataset.js'
+          }
+        ]);
+    </script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -107,7 +120,17 @@
             </div>
         </div>
 
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-33987542-4']);
+          _gaq.push(['_trackPageview']);
 
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
         <script src="../../js/jquery-1.9.1.min.js"></script>
         <script src="../../js/jquery-migrate-1.1.1.min.js"></script>
         <script src="../../js/bootstrap.js"></script>
