@@ -1,0 +1,32 @@
+figure#images {
+  width:100%;
+  margin:0;
+  padding:1em 0;
+  background:black;
+  border:1px solid black;
+}
+figure#images img {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  width:16.666%;
+  margin:0;
+  padding:0;
+  display:block;
+  float:left;
+}
+
+figure#images figcaption {
+  color:white;
+  text-align:center;
+}
+
+#call-to-action h2 {
+  display:inline;
+  font-style:italic;
+  font-size:1em;
+}
+
+p {
+  margin:1em 0;
+}
