@@ -35,7 +35,7 @@
                     <div class="nav-collapse collapse pull-right">
                         <nav id="nextprev" class="navbar-text pull-right">
                         <a href="#" class="prev" title="Previous"><i class="icon-chevron-left icon-white"></i></a>
-                        <a href="#overview" title="Overview"><i class="icon-home icon-white"></i></a>
+                        <a id="nav-overview" href="#overview" title="Overview" data-original-title="Go home" data-content="Go back to the main view by clicking the 'home' icon." data-placement="bottom"><i class="icon-home icon-white"></i></a>
                         <a href="#" class="next" title="Next"><i class="icon-chevron-right icon-white"></i></a>
                         </nav>
 
@@ -78,7 +78,7 @@
                     On Saturday, March 16th the ELK kids and community volunteers came together to clean up and beautify Parkfield Lake park. Based on the "broken window theory," which states that maintaining and monitoring urban environments in a well-ordered way may stop further vandalism and crime escalation, we believe that a simple clean-up will strengthen our community.
                 </div>
             </div>
-            <div id="section-1" class="section landscape step" data-x="-400" data-y="-300">
+            <div id="section-1" class="section landscape step" data-x="-400" data-y="-300" data-content="Explore the story by clicking on photos or text." data-original-title="Explore the story" data-container"body">
                 <figure>
                 <img src="../img/ELK2-1920x1280.jpg" />
                 <figcaption>Before the wall was painted by ELK volunteers and students</figcaption>
@@ -160,6 +160,19 @@
                 $(function() {
                     $('.step').on('impress:stepenter', updateNav);
                     impress().init();
+                    // Show some instructional popovers
+                    $('#section-1').popover({
+                      container: 'body'
+                    }).popover('show');
+                    $('#nav-overview').popover({
+                      container: 'body'
+                    }).popover('show');
+                    // Once the user opens a section, destroy the popover
+                    // forever
+                    $('.section').click(function() {
+                      $('#section-1').popover('destroy');
+                      $('#nav-overview').popover('destroy');
+                    });
                 });
             })(jQuery);
         </script>
