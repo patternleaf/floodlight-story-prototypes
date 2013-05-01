@@ -1,9 +1,14 @@
-;(function($, Modernizr, _gaq) {
+;(function($, Modernizr, _gaq, storyTestOpts) {
+  // App-wide options 
+  _.defaults(storyTestOpts, { 
+    ignoreCookies: false, // Ignore cookies
+    forceModal: false // Always use modal popup instead of full-screen
+  });
   var googleFormUrlBase = 'https://docs.google.com/forms/d/11FO5El2U35pV8HIiidjQkpqKeE4t1nwfYWxugOwbIdE/viewform?embedded=true';
   var googleFormUrl = googleFormUrlBase;
   // Story formats that the user has seen
   var seen = $.cookie('floodlight_storytest_seen');
-  if (seen) {
+  if (seen && !storyTestOpts.ignoreCookies) {
     seen = JSON.parse(seen);
   }
   else {
@@ -109,18 +114,22 @@
     updateSurveyUrl(userId, storyType);
     setSeen(id);
     $(sel).show();
-    if (BigScreen.enabled) {
+    if (BigScreen.enabled && !storyTestOpts.forceModal) {
         BigScreen.request($(sel)[0], loadIframe, closeIframe);
     }
     else {
       $(sel).modal({
         minHeight: window.innerHeight,
         minWidth: window.innerWidth,
+        // Make sure modal has a higher z-index than the bootstrap
+        // header
+        zIndex: 2000,
         onShow: function(dialog) {
           $(sel).width(window.innerWidth);
           $(sel).height(window.innerHeight);
           loadIframe();
         },
+        escClose: true,
         onClose: closeIframe
       });
     }
@@ -170,4 +179,4 @@
       }
     });
   });
-})(jQuery, Modernizr, _gaq);
+})(jQuery, Modernizr, _gaq, window.storyTestOpts || {});
