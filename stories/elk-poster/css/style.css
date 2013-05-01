@@ -2,11 +2,11 @@
   position: relative;
 }
 
-/* TODO: Section hover effect so users know individual 
- * sections are clickable
- */
 .section:hover img {
-  box-shadow: 0 1px 8px rgba(0, 105, 214, 0.75);
+  /* The blur radius is really thick so it shows up, even when the element
+   * is scaled with the CSS transform.
+   */
+  box-shadow: 0 1px 40px rgba(0, 105, 214, 0.75);
 }
 
 .section:hover h1,
