@@ -118,6 +118,8 @@
         BigScreen.request($(sel)[0], loadIframe, closeIframe);
     }
     else {
+      // Fullscreen API isn't available, launch the story in a full-window-
+      // sized modal overlay
       $(sel).modal({
         minHeight: window.innerHeight,
         minWidth: window.innerWidth,
@@ -129,8 +131,22 @@
           $(sel).height(window.innerHeight);
           loadIframe();
         },
-        escClose: true,
+        // This doesn't seem to work. We'll handle this manually using
+        // window.postMessage between the parent and child iframes below
+        //escClose: true,
+        escClose: false,
         onClose: closeIframe
+      });
+      // HACK: Listen to window.postMessage from the child (story) iframe
+      // and close the modal when the escape key is pressed
+      $(window).on("message", function(e) {
+        var message = e.originalEvent.data;
+        // Escape key has keycode of 27
+        if (message === "storytest:keydown:27") {
+          $.modal.close();
+          // Unbind the current event listener
+          $(window).off("message", arguments.callee);
+        }
       });
     }
   }

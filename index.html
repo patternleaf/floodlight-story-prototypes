@@ -17,9 +17,12 @@
 
     <script src="./js/modernizr.custom.js"></script>
     <script>
+    var storyTestOpts = {
+        forceModal: false
+    }
     Modernizr.load([
       {
-        test: Modernizr.fullscreen,
+        test: Modernizr.fullscreen && !storyTestOpts.forceModal,
         nope: './js/jquery.simplemodal.1.4.4.min.js'
       }
     ]);
