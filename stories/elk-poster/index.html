@@ -35,7 +35,7 @@
                     <div class="nav-collapse collapse pull-right">
                         <nav id="nextprev" class="navbar-text pull-right">
                         <a href="#" class="prev" title="Previous"><i class="icon-chevron-left icon-white"></i></a>
-                        <a id="nav-overview" href="#overview" title="Overview" data-original-title="Go home" data-content="Go back to the main view by clicking the 'home' icon." data-placement="bottom"><i class="icon-home icon-white"></i></a>
+                        <a id="nav-overview" href="#overview" title="Overview" data-original-title="Go home" data-content="Switch sections with arrow keys or icons. Go back to the main view by clicking the 'home' icon." data-placement="bottom"><i class="icon-home icon-white"></i></a>
                         <a href="#" class="next" title="Next"><i class="icon-chevron-right icon-white"></i></a>
                         </nav>
 
@@ -169,7 +169,7 @@
                     }).popover('show');
                     // Once the user opens a section, destroy the popover
                     // forever
-                    $('.section').click(function() {
+                    $('#overview').one('impress:stepleave', function() {
                       $('#section-1').popover('destroy');
                       $('#nav-overview').popover('destroy');
                     });
