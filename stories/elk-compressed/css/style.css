@@ -19,6 +19,7 @@ figure#images img {
 figure#images figcaption {
   color:white;
   text-align:center;
+  clear:both;
 }
 
 #call-to-action h2 {
