@@ -47,7 +47,7 @@
         "content": "",
         "images": [
           {
-            "src": "img/ELK3-1920x1280.jpg",
+            "src": "img/ELK4-1920x1280.jpg",
             "caption": "After the wall was painted."
           }
         ],
